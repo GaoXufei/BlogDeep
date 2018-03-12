@@ -1,9 +1,17 @@
 ## 博客系统
 
-> 技术栈
+> 知识点
   * 前端
     * Vue
-      * VueX
-      * Vue-Router
+      * Vuex
+      * Vue-router
     * webpack
     * axios
+  
+  * 中间层
+    * Nginx
+    * Node
+      * Koa
+      * Koa-router
+      * Koa-cors
+      * Koa-bodyparser
