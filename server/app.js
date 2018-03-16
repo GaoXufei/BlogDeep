@@ -12,7 +12,11 @@ const routing = require('./routes/');
 // 实例化koa
 const app     = new Koa()
 
-app
+// 连接Mongdb
+mongoose.connect(config.mongoConfig.url)
+// 连接数据库是否成功
+mongoose.connection.on("connected", () => {
+  app
   .use(Cors(
     {
       maxAge: 7 * 24 * 60 * 60,
@@ -23,7 +27,14 @@ app
   ))
   .use(bodyParser())
 
-routing(app)
+  routing(app)
+  console.log(`*** MongoDB connect success! ***`)
+})
+mongoose.connection.on("error", () => {
+  console.log(`### MongoDB connect fail! ###`)
+})
+
+
 
 // 监听应用端口
 app.listen(config.app.port, () => {

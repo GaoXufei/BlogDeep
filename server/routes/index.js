@@ -1,13 +1,14 @@
 const Router = require('koa-router'),
       router = new Router();
-const article  = require('../controller/article');
+const controllers  = require('../controller/index');
 
 
 function routes(app){
   app
     .use(router.routes(), router.allowedMethods());
-
-  article(router)
+    
+  controllers(router)
+  
 }
 
 module.exports = routes

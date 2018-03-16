@@ -25,10 +25,13 @@ module.exports = function (router) {
   // 根据_id查找对应文章
   router.get(`/by/:id`, async (ctx, next) => {
     try{
-      ctx.body = await articleServer.findArticleById(ctx.params.id)
+      if(!await articleServer.findArticleById(ctx.params.id)){
+        throw { status: -1, message: '数据获取失败！' }
+      }
+      ctx.body = await articleServer.findArticleById(ctx.params.id);
     }catch(e){
-      ctx.body = { error: e }
-      ctx.status = 500
+      ctx.body = e
+      ctx.status = 404
     }
   })
   // 添加文章
@@ -38,8 +41,36 @@ module.exports = function (router) {
       ctx.status = 200;
     }catch(e){
       ctx.body = { error: e }
-      ctx.status = 500
+      ctx.status = 404
     }
   })
-  
+  // 根据_id删除对应文章条目(单条)
+  /**
+   * { n: 是否删除失败/成功(0/1) }
+   */
+  router.del(`/:id`, async (ctx, next) => {
+    try{
+      if((await articleServer.delArticleById(ctx.params.id)).n == 0){
+        throw { status: false, message: '数据删除失败！' }
+      }
+      ctx.body = await articleServer.delArticleById(ctx.params.id);
+      ctx.status = 200;
+    }catch(e){
+      ctx.body = { error: e }
+      ctx.status = 404
+    }
+  })
+  // 根据_id更新数据
+  router.patch(`/update/:id`, async (ctx, next) => {
+    try{
+      if((await articleServer.updateArticleById(ctx.params.id, ctx.request.body)).n == 0){
+        throw await articleServer.updateArticleById(ctx.params.id, ctx.request.body) 
+      }
+      ctx.body = { status: true, message: '修改成功！' }
+      ctx.status = 200;
+    }catch(e){
+      ctx.body = { error: e }
+      ctx.status = 404
+    }
+  })
 }
