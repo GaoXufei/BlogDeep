@@ -1,5 +1,5 @@
 /**
- * 文章
+ * 文章 Controller
  */
 const config = require('../config/index')
 const { article: ROUTER_NAME } = config.routerName
@@ -7,9 +7,8 @@ const articleServer = require('../models/article')
 const { CreateObject } = require('../tool/articleTool')
 
 module.exports = function (router) {
-  router.prefix(`${config.app.apiPath}/${config.routerName.article}`)
   // 查询所有文章 
-  router.get(`/`, async (ctx, next) => {
+  router.get(`/${ROUTER_NAME}`, async (ctx, next) => {
     try{
       // 分页 按时间倒序
       // 每页10条
@@ -20,10 +19,9 @@ module.exports = function (router) {
       ctx.body = { error: e }
       ctx.status = 500
     }
-    
   }) 
   // 根据_id查找对应文章
-  router.get(`/by/:id`, async (ctx, next) => {
+  router.get(`/${ROUTER_NAME}/by/:id`, async (ctx, next) => {
     try{
       if(!await articleServer.findArticleById(ctx.params.id)){
         throw { status: -1, message: '数据获取失败！' }
@@ -35,7 +33,7 @@ module.exports = function (router) {
     }
   })
   // 添加文章
-  router.post(`/add`, async (ctx, next) => {
+  router.post(`/${ROUTER_NAME}/add`, async (ctx, next) => {
     try{
       await articleServer.addArticle((CreateObject(ctx.request.body)))
       ctx.status = 200;
@@ -48,7 +46,7 @@ module.exports = function (router) {
   /**
    * { n: 是否删除失败/成功(0/1) }
    */
-  router.del(`/:id`, async (ctx, next) => {
+  router.del(`/${ROUTER_NAME}/:id`, async (ctx, next) => {
     try{
       if((await articleServer.delArticleById(ctx.params.id)).n == 0){
         throw { status: false, message: '数据删除失败！' }
@@ -61,7 +59,7 @@ module.exports = function (router) {
     }
   })
   // 根据_id更新数据
-  router.patch(`/update/:id`, async (ctx, next) => {
+  router.patch(`/${ROUTER_NAME}/update/:id`, async (ctx, next) => {
     try{
       if((await articleServer.updateArticleById(ctx.params.id, ctx.request.body)).n == 0){
         throw await articleServer.updateArticleById(ctx.params.id, ctx.request.body) 

@@ -60,7 +60,7 @@ class Article {
       .sort(sort)
       .limit(limit)
       .skip(skip)
-      .exec()
+
     return result && result.map(item => item.toObject());
   }
   // 根据数据库_id查找对应文章

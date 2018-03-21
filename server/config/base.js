@@ -29,6 +29,12 @@ module.exports = {
     'cert': 'flyblog'
   },
 
+  // 加密
+  crypto: {
+    secret: 'a secret',
+    
+  },
+
   // 路由名称
   routerName: {
     // 我
@@ -39,6 +45,8 @@ module.exports = {
     drafts: 'drafts',
     // 标签
     tag: 'tag',
+    // 用户
+    user: 'user'
 
   }
 
