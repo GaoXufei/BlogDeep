@@ -1,0 +1,42 @@
+$bg-color: #fff; // 主页背景颜色
+$fontHoverColor: #99CCFF; // 文字移入颜色
+$fontColor: #66CCFF; // 常规文字颜色
+.container{
+  position: relative;
+  width: 100%;
+  height: 100%;
+  .route{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    width:360px;
+    height: 300px;
+    .routeTitle{
+      li{
+        margin-bottom: 15px;
+        dl{
+          dt{
+            margin-bottom: 10px;
+            h1{
+              font-size: 30px;
+              font-weight: 700;
+              color: $fontColor;
+            }
+          }
+          dd{
+            font-size: 14px;
+            color: #ccc;
+          }
+        }
+        a{
+          color: $fontColor;
+        }
+        a:hover{
+          color: $fontHoverColor;
+        }
+      }
+    }
+  }
+}

@@ -9,7 +9,7 @@ const schema = mongoose.Schema;
 const articleSchema = new schema({
   articleId: String,
   title: String,
-  tags: Array,
+  tags: String,
   description: String,
   create_at: String,
   content: String,
@@ -34,9 +34,8 @@ const articleSchema = new schema({
 const article = mongoose.model('article', articleSchema);
 
 class Article {
-  // 文章添加
   /**
-   * 
+   * 文章添加
    * @param { Object } ops 参数选项
    */
   async addArticle(ops){
@@ -45,9 +44,8 @@ class Article {
     result = await articleMongo.save()
     return result;
   }
-  // 全部文章
   /**
-   * 
+   * 全部文章
    * @param { String } sort 排序方式
    * @param { Number } limit 每页显示的条目数量
    * @param { Number } skip 从多少条数据开始
@@ -55,16 +53,15 @@ class Article {
   async findArticle(sort = null, limit = null, skip = null){
     let result = null;
     result = await article.find()
-      .populate('tag')
-      .select('title tags create_at content')
+      .select('title content tags create_at')
       .sort(sort)
       .limit(limit)
       .skip(skip)
 
     return result && result.map(item => item.toObject());
   }
-  // 根据数据库_id查找对应文章
   /**
+   * 根据数据库_id查找对应文章
    * id: mongoDB中的ObjectId
    */
   async findArticleById(id){
@@ -73,8 +70,18 @@ class Article {
     result = await article.findOne({ "_id": _id });
     return result;
   }
-  // 根据_id删除对应文章条目
   /**
+   * 根据标签查询相关文章
+   * 使用正则进行模糊搜索
+   * @param {*} tag 标签名
+   */
+  async findArticleListByTag(tag){
+    let result = null;
+    result = await article.find({tags: new RegExp(tag)})
+    return result;
+  }
+  /**
+   * 根据_id删除对应文章条目
    * id: mongoDB中的ObjectId
    */
   async delArticleById(id){

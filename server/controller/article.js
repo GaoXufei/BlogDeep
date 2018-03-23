@@ -13,6 +13,7 @@ module.exports = function (router) {
       // 分页 按时间倒序
       // 每页10条
       // 从数据库的第0条开始
+      let page = ctx.query.page;
       ctx.body = await articleServer.findArticle({ "create_at": -1 }, 10, 0);
       ctx.status = 200
     }catch(e){
@@ -23,10 +24,8 @@ module.exports = function (router) {
   // 根据_id查找对应文章
   router.get(`/${ROUTER_NAME}/by/:id`, async (ctx, next) => {
     try{
-      if(!await articleServer.findArticleById(ctx.params.id)){
-        throw { status: -1, message: '数据获取失败！' }
-      }
       ctx.body = await articleServer.findArticleById(ctx.params.id);
+      ctx.status = 200
     }catch(e){
       ctx.body = e
       ctx.status = 404
@@ -42,8 +41,8 @@ module.exports = function (router) {
       ctx.status = 404
     }
   })
-  // 根据_id删除对应文章条目(单条)
   /**
+   * 根据_id删除对应文章条目(单条)
    * { n: 是否删除失败/成功(0/1) }
    */
   router.del(`/${ROUTER_NAME}/:id`, async (ctx, next) => {
@@ -70,5 +69,15 @@ module.exports = function (router) {
       ctx.body = { error: e }
       ctx.status = 404
     }
+  })
+  // 根据tag获取文章列表
+  router.get(`/${ROUTER_NAME}/tags`, async (ctx, next) => {
+    try{
+      ctx.body = await articleServer.findArticleListByTag(ctx.query.tag);
+      ctx.status = 200
+    }catch(e){
+      // ...
+    }
+   
   })
 }
