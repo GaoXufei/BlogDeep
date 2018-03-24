@@ -1,0 +1,15 @@
+
+nav{
+  // overflow: hidden;
+  
+  display: box;
+ 
+  > div{
+    float: left; 
+    position: relative;
+  }
+  > ul{
+    float: right;
+    
+  }
+}
