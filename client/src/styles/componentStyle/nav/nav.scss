@@ -1,15 +1,51 @@
-
-nav{
-  // overflow: hidden;
-  
-  display: box;
- 
-  > div{
-    float: left; 
+$navColor: #303133;
+.headerNav{
+  padding: 10px 0;
+  // box-shadow: 0 5px 20px #eee;
+  // nav
+  nav{
+    overflow: hidden;
     position: relative;
-  }
-  > ul{
-    float: right;
+    box-sizing: border-box;
+    height: 60px;
+    margin:0 auto;
+    max-width: 1200px;
+    min-width: 750px;
     
+    // logo
+    > div{
+      float: left;
+    }
+    > div > a {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    // 搜索
+    > form {
+      height: 100%;
+      float: right;
+      display: table;
+      margin-right: 20px;
+    }
+    > form > div{
+      display: table-cell;
+      vertical-align: middle;
+    }
+
+    // 导航
+    > ul{
+      float: right;
+      border: none;
+      height:50px;
+    }
+    > ul > li{
+      height: 50px;
+    }
+    > ul > li a{
+      color: $navColor;
+      text-decoration: none;
+    }
   }
 }

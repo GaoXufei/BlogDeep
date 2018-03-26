@@ -1,36 +1,28 @@
 <template>
-  <nav>
-    <div>
-      Logo
-    </div>
-    <el-menu class="el-menu-demo" mode="horizontal">
-      <el-menu-item index="1">处理中心</el-menu-item>
-      <el-submenu index="2">
-        <template slot="title">我的工作台</template>
-        <el-menu-item index="2-1">选项1</el-menu-item>
-        <el-menu-item index="2-2">选项2</el-menu-item>
-        <el-menu-item index="2-3">选项3</el-menu-item>
-        <el-submenu index="2-4">
-          <template slot="title">选项4</template>
-          <el-menu-item index="2-4-1">选项1</el-menu-item>
-          <el-menu-item index="2-4-2">选项2</el-menu-item>
-          <el-menu-item index="2-4-3">选项3</el-menu-item>
-        </el-submenu>
-      </el-submenu>
-      <el-menu-item index="3">消息中心</el-menu-item>
-      <el-menu-item index="4"><a href="https://www.ele.me" target="_blank">订单管理</a></el-menu-item>
-    </el-menu>
-
-  </nav>
+  <div class="headerNav">
+    <nav>
+        <div>
+          <router-link to="posts"><img src="../../assets/img/logo.png" alt=""></router-link>
+        </div>
+        <el-menu class="el-menu-demo" default-active="1" mode="horizontal">
+          <el-menu-item index="1">文章列表</el-menu-item>
+          <el-menu-item index="2">标签</el-menu-item>
+          <el-menu-item index="3">关于我</el-menu-item>
+        </el-menu>
+        <el-form>
+          <el-input placeholder="文章搜索"></el-input>
+        </el-form>
+      </nav>
+  </div>
 </template>
 
 <script>
 export default {
-  
+  name: 'headerNav'
 
 }
 </script>
 
 <style lang="scss" scoped>
-  @import "../../styles/componentStyle/nav/nav.scss"
+  @import "../../styles/componentStyle/nav/nav.scss";
 </style>
