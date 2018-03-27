@@ -5,16 +5,21 @@ const config = require('../config/index')
 const { article: ROUTER_NAME } = config.routerName
 const articleServer = require('../models/article')
 const { CreateObject } = require('../tool/articleTool')
+const trimHTML = require('trim-html')
 
 module.exports = function (router) {
   // 查询所有文章 
   router.get(`/${ROUTER_NAME}`, async (ctx, next) => {
     try{
-      // 分页 按时间倒序
-      // 每页10条
-      // 从数据库的第0条开始
-      let page = ctx.query.page;
-      ctx.body = await articleServer.findArticle({ "create_at": -1 }, 10, 0);
+       // 第几页
+      let page = Number(ctx.query.page);
+      // 每页显示条数
+      let pageSize = Number(ctx.query.pageSize);
+      let skip = Number((page - 1) * pageSize); 
+      let result = await articleServer.findArticle({ "create_at": -1 }, pageSize, skip);
+      // 处理文章主内容，截取前140字
+      result.map(response => response.content = trimHTML(response.content, { limit: 140 }))
+      ctx.body = result;
       ctx.status = 200
     }catch(e){
       ctx.body = { error: e }

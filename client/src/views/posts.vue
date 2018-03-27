@@ -1,13 +1,9 @@
 <template>
   <div class="posts">
-    <nav-header></nav-header>
+    <nav-header />
     <!-- <banner-post></banner-post> -->
-    <div class="post-list">
-      <ul>
-        <li v-for="post in articleList" :key="post._id">
-          {{ post }}
-        </li>
-      </ul>
+    <div class="content-wrap">
+      <article-list :articleList="articleList" />
     </div>
   </div>
 </template>
@@ -17,29 +13,40 @@
 import NavHeader from '@/components/nav/nav'
 // 轮播图组件
 // import BannerPost from '@/components/banner/banner-post'
+// 文章列表组件
+import ArticleList from '@/components/posts/list'
 export default {
   name: 'Posts',
   components: {
     NavHeader,
-    // BannerPost
+    // BannerPost,
+    ArticleList,
   },
   data(){
     return {
-      articleList:[]
+      articleList:[],
+      pageObj: {
+        page: 1, // 页码
+        pageSize: 10, // 每页数量
+      }
     }
   },
   created(){
     
   },
   mounted(){
-    let resultArticles = this.$axios.get('http://127.0.0.1:7001/api/article');
-
-    resultArticles
+    // axios get http://127.0.0.1:7001/api/article
+    // params: page pageSize
+    let resultArticles = this.$axios.get('http://127.0.0.1:7001/api/article',{
+      params: { page: this.pageObj.page, pageSize: this.pageObj.pageSize }
+    });
+    resultArticles  
       .then((response) => {
-        this.articleList = response.data
-        console.log(this.articleList)
+        // 将拿到的数据赋值给 articleList
+        this.articleList = response.data;
       })
       .catch((error) => {
+        // ...
         console.log(error)
       })
   },

@@ -1,5 +1,5 @@
 <template>
-  <div class="headerNav">
+  <div class="header-nav">
     <nav>
         <div>
           <router-link to="posts"><img src="../../assets/img/logo.png" alt=""></router-link>

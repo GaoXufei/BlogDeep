@@ -9,7 +9,7 @@ const schema = mongoose.Schema;
 const articleSchema = new schema({
   articleId: String,
   title: String,
-  tags: String,
+  tags: Array,
   description: String,
   create_at: String,
   content: String,
@@ -73,7 +73,7 @@ class Article {
   /**
    * 根据标签查询相关文章
    * 使用正则进行模糊搜索
-   * @param {*} tag 标签名
+   * $regex <- 也可使用
    */
   async findArticleListByTag(tag){
     let result = null;
