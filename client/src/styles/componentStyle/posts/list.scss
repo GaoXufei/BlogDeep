@@ -1,17 +1,19 @@
 $titleColor: #000;
 .post-list{
-  max-width:1200px;
-  margin: 0 auto;
+  max-width:860px;
+  border-right: 1px solid #ccc;
   > ul {
     > li{
         > dl > dt > a{
           font-size: 24px;
           color: $titleColor;
           font-weight: 700;
+          text-decoration: none;
         }
         > dl > dt > span{
           display: block;
           padding: 10px 0;
+          color: #333;
         }
         > dl > dd{
           line-height: 20px;

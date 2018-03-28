@@ -3,7 +3,7 @@
     <nav-header />
     <!-- <banner-post></banner-post> -->
     <div class="content-wrap">
-      <article-list :articleList="articleList" />
+      <article-list />
     </div>
   </div>
 </template>
@@ -22,34 +22,7 @@ export default {
     // BannerPost,
     ArticleList,
   },
-  data(){
-    return {
-      articleList:[],
-      pageObj: {
-        page: 1, // 页码
-        pageSize: 10, // 每页数量
-      }
-    }
-  },
-  created(){
-    
-  },
-  mounted(){
-    // axios get http://127.0.0.1:7001/api/article
-    // params: page pageSize
-    let resultArticles = this.$axios.get('http://127.0.0.1:7001/api/article',{
-      params: { page: this.pageObj.page, pageSize: this.pageObj.pageSize }
-    });
-    resultArticles  
-      .then((response) => {
-        // 将拿到的数据赋值给 articleList
-        this.articleList = response.data;
-      })
-      .catch((error) => {
-        // ...
-        console.log(error)
-      })
-  },
+  
 
 
 }
