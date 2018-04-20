@@ -10,6 +10,8 @@ import axios from 'axios'
 // 把axios绑定到vue原型中
 Vue.prototype.$axios = axios
 
+Vue.prototype.$axios.defaults.baseURL = 'http://127.0.0.1:7001'
+
 // 加入reset.css 重置css样式
 import "./styles/reset/reset.css"
 // 加入element-ui 和 element-ui的css文件

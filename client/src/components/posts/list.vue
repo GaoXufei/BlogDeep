@@ -5,13 +5,14 @@
         <dl>
           <dt>
             <!-- 文章标题 -->
-            <router-link to="" v-text="response.title"></router-link>
+            <router-link :to="{ name: 'postsTemplate', params: { id: response._id } }" v-text="response.title"></router-link>
           </dt>
           <!-- 创建时间 -->
           <dt><span>{{ response.create_at | time}}</span></dt>
           <!-- 文章内容 -->
           <dd v-html="response.content.html"></dd>
         </dl>
+        <router-link to="" >... continue reading</router-link>
       </li>
     </ul>
   </div>
@@ -25,7 +26,7 @@ export default {
       articleList:[],
       pageObj: {
         page: 1, // 页码
-        pageSize: 10, // 每页数量
+        pageSize: 50, // 每页数量
       }
     }
   },
@@ -35,10 +36,15 @@ export default {
   mounted(){
     // axios get http://127.0.0.1:7001/api/article
     // params: page pageSize
-    let resultArticles = this.$axios.get('http://127.0.0.1:7001/api/article', {
-      params: { page: this.pageObj.page, pageSize: this.pageObj.pageSize }
-    });
-    resultArticles  
+    this
+      .$axios({
+        method: 'get',
+        url: '/api/article',
+        params: { 
+          page: this.pageObj.page,
+          pageSize: this.pageObj.pageSize
+        }
+      })
       .then((response) => {
         // 将拿到的数据赋值给 articleList
         this.articleList = response.data;
@@ -47,10 +53,20 @@ export default {
         // ...
         console.log(error)
       })
+
+
+
+    
+      
   },
   filters: {
     time: function(time){
       return timestamp(time)
+    }
+  },
+  mothods(){
+    function a(){
+      alert()
     }
   }
 }

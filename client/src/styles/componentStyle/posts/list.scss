@@ -1,26 +1,59 @@
 $titleColor: #000;
+$defaultBackground: #409EFF;
 .post-list{
   max-width:860px;
   border-right: 1px solid #ccc;
   > ul {
+    padding:20px 40px 20px 0;
+    box-sizing: border-box;
+    
     > li{
-        > dl > dt > a{
-          font-size: 24px;
-          color: $titleColor;
-          font-weight: 700;
-          text-decoration: none;
+      // border-bottom: 1px solid #ccc;
+        > dl{
+          dt{
+            overflow: hidden;
+            text-overflow:ellipsis;
+            white-space: nowrap;
+            a{
+              font-size: 24px;
+              color: $titleColor;
+              text-decoration: none;
+              border-bottom: 2px solid #fff;
+              display: inline-block;
+              line-height: 28px;
+            }
+            a:hover{
+              border-bottom: 2px solid $defaultBackground;
+            }
+            span{
+              display: block;
+              padding: 5px 0;
+              color: #999;
+              line-height: 30px;
+              font-size: 14px;
+              font-weight: 700;
+            }
+          }
+          
+          dd{
+            line-height: 20px;
+            color: #666;
+            font-size: 14px;
+            
+          }
         }
-        > dl > dt > span{
-          display: block;
+        > a{
+          display: inline-block;
           padding: 10px 0;
-          color: #333;
-        }
-        > dl > dd{
-          line-height: 20px;
-        }
+          font-size: 14px;
+          font-weight: 700;
+          color: $defaultBackground;
+          text-decoration: none;  
+        }      
     }
     > li:not(:last-child){
       margin-bottom: 20px;
     }
   }
+  
 }

@@ -1,8 +1,7 @@
 <template>
   <div class="posts">
     <nav-header />
-    <!-- <banner-post></banner-post> -->
-    <div class="content-wrap">
+    <div class="wrap">
       <article-list />
     </div>
   </div>
@@ -11,8 +10,7 @@
 <script>
 // 导航组件
 import NavHeader from '@/components/nav/nav'
-// 轮播图组件
-// import BannerPost from '@/components/banner/banner-post'
+
 // 文章列表组件
 import ArticleList from '@/components/posts/list'
 export default {
@@ -28,5 +26,5 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-  @import "../styles/componentStyle/posts/posts.scss";
+  @import "../styles/componentStyle/posts/posts";
 </style>

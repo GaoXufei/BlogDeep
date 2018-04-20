@@ -18,18 +18,18 @@ module.exports = function (router) {
       let skip = Number((page - 1) * pageSize); 
       let result = await articleServer.findArticle({ "create_at": -1 }, pageSize, skip);
       // 处理文章主内容，截取前140字
-      result.map(response => response.content = trimHTML(response.content, { limit: 140 }))
+      result.map(response => response.content = trimHTML(response.content, { limit: 180 }))
       ctx.body = result;
-      ctx.status = 200
+      ctx.status = 200;
     }catch(e){
       ctx.body = { error: e }
-      ctx.status = 500
+      ctx.status = 500;
     }
   }) 
   // 根据_id查找对应文章
-  router.get(`/${ROUTER_NAME}/by/:id`, async (ctx, next) => {
+  router.get(`/${ROUTER_NAME}/by`, async (ctx, next) => {
     try{
-      ctx.body = await articleServer.findArticleById(ctx.params.id);
+      ctx.body = await articleServer.findArticleById(ctx.query.id);
       ctx.status = 200
     }catch(e){
       ctx.body = e
@@ -76,7 +76,7 @@ module.exports = function (router) {
     }
   })
   // 根据tag获取文章列表
-  router.get(`/${ROUTER_NAME}/tags`, async (ctx, next) => {
+  router.get(`/${ROUTER_NAME}/tags/`, async (ctx, next) => {
     try{
       ctx.body = await articleServer.findArticleListByTag(ctx.query.tag);
       ctx.status = 200
