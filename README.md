@@ -44,7 +44,7 @@
 
 ## 查询
   - [x] GET /api/article 全部文章
-  - [x] GET /api/article/at/:id 根据_id查询文章
+  - [x] GET /api/article/by/:id 根据_id查询文章
 ## 增加
   - [x] POST /api/article/add 添加文章
 ## 删除
