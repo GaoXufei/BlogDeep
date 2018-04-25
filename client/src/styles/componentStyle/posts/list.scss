@@ -3,6 +3,7 @@ $defaultBackground: #409EFF;
 .post-list{
   max-width:860px;
   border-right: 1px solid #ccc;
+  box-sizing: border-box;
   > ul {
     padding:20px 40px 20px 0;
     box-sizing: border-box;

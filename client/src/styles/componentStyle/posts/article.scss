@@ -1,9 +1,29 @@
 .article{
-  
   .content{
     width: 1200px;
     margin: 0 auto;
-    padding-top: 20px;
+    padding-top: 30px;
     min-height: 1000px;
+    .wrap{
+      width: 860px;
+      border-right: 1px solid #ccc;
+      box-sizing: border-box;
+      dl{
+        padding-top: 20px;
+        dt{
+          h2{
+            font-size: 30px; 
+            text-align: center;
+          }
+          p{
+            text-align: center;
+            color: #ccc;
+            font-size: 14px;
+            line-height: 30px;
+          }
+        }
+      }
+    }
+    
   }
 }

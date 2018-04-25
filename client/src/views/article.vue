@@ -2,13 +2,25 @@
     <div class="article">
       <nav-header />
       <div class="content">
-        {{ article }}
+        <div class="wrap">
+          <dl>
+            <dt>
+              <h2 v-text="article.title"></h2>
+              <p>
+                <span>{{ article.create_at | time }}</span>
+              </p>
+            </dt>
+            <dd></dd>
+          </dl>
+        </div>
       </div>
     </div>
 </template>
 
 <script>
   import NavHeader from '@/components/nav/nav'
+  import { timestamp } from "../tool/time"
+  
   export default {
     data(){
       return {
@@ -30,9 +42,12 @@
         .then( response => {
           this.article = response.data
         })
-
-      
-    }
+    },
+    filters: {
+      time: function(time){
+        return timestamp(time)
+      }
+    },
     
   }
 </script>
