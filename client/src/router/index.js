@@ -26,9 +26,12 @@ export default new Router({
       component: Article
     },
     {
-      path: '/login',
+      path: '/admin/login',
       name: 'loginTemplate',
       component: Login
+    },
+    {
+      path: '/admin/edit',
     }
     
   ]

@@ -28,7 +28,7 @@ export default {
       username: '',
       password: ''
     }
-  }, 
+  },
   methods: {
     handleLogin(){
       this
