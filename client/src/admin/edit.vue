@@ -1,13 +1,23 @@
 <template>
   <div class="edit">
-    1
+    <mavon-editor :ishljs = "true" v-model="value" @change="getContent" />
+    
   </div>
 </template>
 
 <script>
   export default {
-    
-    
+    name: 'markdown',
+    data(){
+      return {
+        value: ''
+      }
+    },
+    methods: {
+      getContent: function(value, render){
+        console.log(render)
+      }
+    }
   }
 </script>
 
