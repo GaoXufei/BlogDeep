@@ -32,8 +32,6 @@
         <mavon-editor :ishljs = "true"  @change="getContent" @save="saveArticle" />
       </el-form-item>
     </el-form>
-    
-    
   </div>
 </template>
 

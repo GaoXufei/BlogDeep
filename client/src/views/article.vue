@@ -10,7 +10,7 @@
                 <span>{{ article.create_at | time }}</span>
               </p>
             </dt>
-            <dd></dd>
+            <dd v-html="article.content"></dd>
           </dl>
         </div>
       </div>

@@ -6,6 +6,7 @@ const { article: ROUTER_NAME } = config.routerName
 const articleMongoServer = require('../models/article')
 const { CreateObject } = require('../tool/articleTool')
 const trimHTML = require('trim-html')
+const mongoose = require('mongoose')
 
 module.exports = function (router) {
   // 查询所有文章 
@@ -32,6 +33,7 @@ module.exports = function (router) {
       ctx.body = await new Article().findArticleById(ctx.query.id);
       ctx.status = 200
     }catch(e){
+      console.log(e)
       ctx.body = e
       ctx.status = 404
     }
