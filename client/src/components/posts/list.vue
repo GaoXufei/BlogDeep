@@ -12,7 +12,7 @@
           <!-- 文章内容 -->
           <dd v-html="response.content.html"></dd>
         </dl>
-        <router-link to="" >... continue reading</router-link>
+        <router-link :to="{ name: 'postsTemplate', params: { id: response._id } }" >... continue reading</router-link>
       </li>
     </ul>
   </div>
@@ -27,6 +27,7 @@ export default {
       pageObj: {
         page: 1, // 页码
         pageSize: 50, // 每页数量
+        limit: 180
       }
     }
   },
@@ -42,7 +43,8 @@ export default {
         url: '/api/article',
         params: { 
           page: this.pageObj.page,
-          pageSize: this.pageObj.pageSize
+          pageSize: this.pageObj.pageSize,
+          limit: this.pageObj.limit,
         }
       })
       .then((response) => {
@@ -52,12 +54,7 @@ export default {
       .catch((error) => {
         // ...
         console.log(error)
-      })
-
-
-
-    
-      
+      })   
   },
   filters: {
     time: function(time){
@@ -65,9 +62,7 @@ export default {
     }
   },
   mothods(){
-    function a(){
-      alert()
-    }
+    
   }
 }
 </script>

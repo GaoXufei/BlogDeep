@@ -35,12 +35,22 @@ $defaultBackground: #409EFF;
               font-weight: 700;
             }
           }
-          dd{
+          /deep/ dd{
             line-height: 20px;
             color: #666;
             font-size: 14px;
-            
-            
+            margin: 0;
+            overflow: hidden;
+            a{
+              color: #409EFF;
+              text-decoration: none;
+            } 
+            mark{
+              color:#e6a23c; background: #fff;;
+            }
+            p{
+              line-height: 24px;
+            }
           }
         }
         > a{

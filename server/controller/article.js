@@ -17,9 +17,10 @@ module.exports = function (router) {
       // 每页显示条数
       let pageSize = Number(ctx.query.pageSize);
       let skip = Number((page - 1) * pageSize); 
+      let limit_article = Number(ctx.query.limit) || null;
       let result = await new Article().findArticle({ "create_at": -1 }, pageSize, skip);
       // 处理文章主内容，截取前180字
-      result.map(response => response.content = trimHTML(response.content, { limit: 180 }))
+      result.map(response => response.content = trimHTML(response.content, { limit: limit_article }))
       ctx.body = result;
       ctx.status = 200;
     }catch(e){
@@ -53,9 +54,9 @@ module.exports = function (router) {
    * 根据_id删除对应文章条目(单条)
    * { n: 是否删除失败/成功(0/1) }
    */
-  router.del(`/${ROUTER_NAME}/:id`, async (ctx, next) => {
+  router.del(`/${ROUTER_NAME}/del`, async (ctx, next) => {
     try{
-      ctx.body = await new Article().delArticleById(ctx.params.id);
+      ctx.body = await new Article().delArticleById(ctx.request.body.id);
       ctx.status = 200;
     }catch(e){
       ctx.body = { error: e }
