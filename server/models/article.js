@@ -12,6 +12,7 @@ const articleSchema = new schema({
   description: String,
   create_at: String,
   content: String,
+  edit: String,
   comment: [
     {
       name: String,

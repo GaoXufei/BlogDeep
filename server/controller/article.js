@@ -64,10 +64,11 @@ module.exports = function (router) {
     }
   })
   // 根据_id更新数据
-  router.patch(`/${ROUTER_NAME}/update/:id`, async (ctx, next) => {
+  router.patch(`/${ROUTER_NAME}/update/`, async (ctx, next) => {
     try{
-      
-      ctx.body = { status: true, message: '修改成功！' }
+      // 对取到的对象进行解构
+      let {_id, ...obj} =  ctx.request.body;
+      ctx.body = await new Article().updateArticleById(_id, obj)
       ctx.status = 200;
     }catch(e){
       ctx.body = { error: e }

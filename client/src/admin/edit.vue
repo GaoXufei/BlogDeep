@@ -44,6 +44,7 @@
           title: '',
           tags: [],
           content: '',
+          edit: '',
           description: '',
         },
         inputVisible: false,
@@ -54,6 +55,7 @@
       // 输入即触发
       getContent: function(value, render){
         this.articleInfo.content = render;
+        this.articleInfo.edit = value;
       },
       // 保存即触发
       saveArticle: function(value, render){

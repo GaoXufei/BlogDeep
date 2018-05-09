@@ -4,7 +4,7 @@
       :data="articleList"
       border>
       <el-table-column
-        label="时间"
+        label="创建时间"
         width="170"
         property="create_at"
         >
@@ -15,7 +15,7 @@
       <el-table-column
         prop="title"
         label="文章题目"
-        width="850">
+        width="1300">
       </el-table-column>
       <el-table-column
         fixed="right"
@@ -23,7 +23,7 @@
         width="150">
         <template slot-scope="scope">
           <el-button type="text" class="set" size="small"><router-link  target="_blank" :to="{ name: 'postsTemplate', params: { id: scope.row._id } }">查看</router-link></el-button>
-          <el-button type="text" class="set" size="small">编辑</el-button>
+          <el-button type="text" class="set" size="small"><router-link  :to="{ name: 'article_patch', params: { id: scope.row._id } }">编辑</router-link></el-button>
           <el-button type="text" class="set" size="small" @click="del_article(scope.row._id)">删除</el-button>
         </template>
       </el-table-column>

@@ -43,7 +43,6 @@
         document.documentElement.scrollTop = 0 //火狐写法
         document.body.scrollTop = 0 // 谷歌写法
       }()
-
       this
         .$axios({
           method: 'get',

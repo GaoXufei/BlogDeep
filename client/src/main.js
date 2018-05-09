@@ -11,7 +11,7 @@ import ElementUI from 'element-ui'
 import "element-ui/lib/theme-chalk/index.css"
 // 引入markdown插件 和 引入mavonEditor样式
 import mavonEditor from 'mavon-editor'
-import "mavon-editor/dist/css/index.scss"
+import "mavon-editor/dist/css/index.css"
 // 使用element-ui
 Vue.use(ElementUI)
 // 使用mavonEditor

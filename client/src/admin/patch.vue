@@ -29,7 +29,7 @@
         <el-input type="textarea" v-model="articleInfo.description" placeholder="简短的描述一下吧"></el-input>
       </el-form-item>
       <el-form-item label="文章内容">
-        <mavon-editor :ishljs = "true"  @change="getContent" @save="saveArticle" />
+        <mavon-editor :ishljs = "true" v-model="articleInfo.edit"  @change="getContent" @save="saveArticle" />
       </el-form-item>
     </el-form>
   </div>
@@ -42,6 +42,7 @@ export default {
       articleInfo: {
         title: '',
         tags: [],
+        edit: '',
         content: '',
         description: '',
       },
@@ -49,10 +50,28 @@ export default {
       inputValue: ''
     }
   },
+  
+  mounted(){
+    this
+      .$axios({
+        method: 'get',
+        url: 'api/article/by',
+        params: {
+          id: this.$route.params.id
+        }
+      })
+      .then( response =>{
+        this.articleInfo = response.data
+      })
+      .catch( error =>{
+        // ... error
+      })
+  },
   methods: {
     // 输入即触发
     getContent: function(value, render){
       this.articleInfo.content = render;
+      this.articleInfo.edit = value;
     },
     // 保存即触发
     saveArticle: function(value, render){
@@ -65,9 +84,9 @@ export default {
       }else{
         this
           .$axios({
-            method: 'post',
-            url: '/api/article/add',
-            data: this.articleInfo
+            method: 'patch',
+            url: '/api/article/update',
+            data: this.articleInfo,
           })
           .then( response => {
             this.$notify({
@@ -109,6 +128,6 @@ export default {
 }
 </script>
 
-<style scoped>
-
+<style lang="sass" scoped>
+  @import "../styles/admin/patch";
 </style>
