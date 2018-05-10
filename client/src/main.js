@@ -26,9 +26,12 @@ Vue.prototype.$axios = axios
 
 Vue.prototype.$axios.defaults.baseURL = 'http://127.0.0.1:7001'
 
+// import store from './store'
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
+  // store,
   router,
   components: { App },
   template: '<App/>'

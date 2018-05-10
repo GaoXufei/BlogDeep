@@ -21,6 +21,7 @@
 </template>
 
 <script>
+import { Encrypt } from '../tool/encrypt'
 export default {
   name: 'LoginPage',
   data(){
@@ -35,13 +36,35 @@ export default {
         .$axios({
           method: 'post',
           url: 'api/user/login',
-          data: { username: this.username, password: this.password }
+          data: { username: this.username, password: Encrypt(this.password) }
         })
         .then( response => {
           // 如果返回的结果异常，则抛出处理
-         if(response.data.status == 'error') throw response.data;
+          if(response.data.status == 'error') throw response.data;
+          let token = response.data.token,
+              username = response.data.userInfo.username;
+          
+          // this
+          //   .$store.dispatch('UserLogin', token);
+          // this
+          //   .$store.dispatch('UserName', username);
+
+          let redirectUrl = decodeURIComponent(this.$route.query.redirect || '/admin/');
+          //跳转到指定的路由
+          setTimeout(() => {
+            this.$router.push({
+              path: redirectUrl
+            });
+          }, 1000)
+          
+          this.$notify({
+            title: '成功',
+            message: response.data.msg,
+            type: response.data.status
+          })
         })
         .catch( error => {
+          console.log(error)
           // 返回结果异常处理
           this.$notify({
             title: '失败',
