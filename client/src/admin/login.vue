@@ -44,10 +44,10 @@ export default {
           let token = response.data.token,
               username = response.data.userInfo.username;
           
-          // this
-          //   .$store.dispatch('UserLogin', token);
-          // this
-          //   .$store.dispatch('UserName', username);
+          this
+            .$store.dispatch('UserLogin', token);
+          this
+            .$store.dispatch('UserName', username);
 
           let redirectUrl = decodeURIComponent(this.$route.query.redirect || '/admin/');
           //跳转到指定的路由

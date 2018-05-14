@@ -1,5 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import store from '../store'
+
 
 import Index from '@/views/Index' // 首页
 import Posts from '@/components/posts/posts' // 文章列表页
@@ -12,7 +14,7 @@ import Admin from '@/admin/admin' // 后台
 
 Vue.use(Router)
 
-export default new Router({
+const router = new Router({
   routes: [
     {
       path: '/',
@@ -33,20 +35,32 @@ export default new Router({
       path: '/admin',
       name: 'adminTemplate',
       component: Admin,
+      meta: {
+        requireAuth: true,  // 添加该字段，表示进入这个路由是需要登录的
+      },
       children: [
         {
           path: '/admin/edit',
           name: 'article_edit',
+          meta: {
+            requireAuth: true,  // 添加该字段，表示进入这个路由是需要登录的
+          },
           component: Edit
         },
         {
           path: '/admin/list',
           name: 'article_list',
+          meta: {
+            requireAuth: true,  // 添加该字段，表示进入这个路由是需要登录的
+          },
           component: AdminArticleList
         },
         {
           path: '/admin/patch/:id',
           name: 'article_patch',
+          meta: {
+            requireAuth: true,  // 添加该字段，表示进入这个路由是需要登录的
+          },
           component: AdminArticlePatch
         }
       ]
@@ -56,22 +70,25 @@ export default new Router({
       name: 'loginTemplate',
       component: Login
     },
-    // {
-    //   path: '/admin/edit',
-    //   name: 'article_edit',
-    //   component: Edit
-    // },
-    // {
-    //   path: '/admin/list',
-    //   name: 'article_list',
-    //   component: AdminArticleList
-    // },
-    // {
-    //   path: '/admin/patch/:id',
-    //   name: 'article_patch',
-    //   component: AdminArticlePatch
-    // }
-    
-    
   ]
+});
+
+router.beforeEach((to, from, next) => {
+  if(to.meta.requireAuth){
+    let token = store.state.token;
+    if(token){
+      next()
+    }else{
+      next({
+        path: '/admin/login',
+        query: { redirect: to.fullPath }
+      })
+    }
+  }else{
+    next()
+  }
+  
 })
+
+export default router
+

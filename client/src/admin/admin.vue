@@ -26,7 +26,7 @@
                 <el-menu-item index="/admin/list">文章列表</el-menu-item>
               </el-menu-item-group>
             </el-submenu>
-          <el-menu-item index="2">
+          <el-menu-item index="2" disabled>
             <i class="el-icon-menu"></i>
             <span slot="title">用户设置</span>
           </el-menu-item>
@@ -34,7 +34,7 @@
             <i class="el-icon-document"></i>
             <span slot="title">数据设置</span>
           </el-menu-item>
-          <el-menu-item index="4">
+          <el-menu-item index="4" disabled>
             <i class="el-icon-setting"></i>
             <span slot="title">系统设置</span>
           </el-menu-item>
