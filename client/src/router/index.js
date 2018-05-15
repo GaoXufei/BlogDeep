@@ -7,10 +7,12 @@ import Index from '@/views/Index' // 首页
 import Posts from '@/components/posts/posts' // 文章列表页
 import Article from '@/components/posts/article' // 文章内容
 import Login from '@/admin/login' // 登录页面
+import Register from '@/admin/register'
 import Edit from '@/admin/edit' // 文章编辑
 import AdminArticleList from '@/admin/list' // 后台文章列表
 import AdminArticlePatch from '@/admin/patch' // 更新文章
 import Admin from '@/admin/admin' // 后台
+
 
 Vue.use(Router)
 
@@ -70,6 +72,11 @@ const router = new Router({
       name: 'loginTemplate',
       component: Login
     },
+    {
+      path: '/admin/register',
+      name: 'registerTemplate',
+      component: Register
+    }
   ]
 });
 
@@ -87,7 +94,7 @@ router.beforeEach((to, from, next) => {
   }else{
     next()
   }
-  
+
 })
 
 export default router

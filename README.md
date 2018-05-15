@@ -1,54 +1,47 @@
-## 博客系统
+# 博客系统
 
-> 知识点
+> 一个初级vue + node练手项目
+
+** 2018.05.15 ** 抽时间会写一个nuxt版本，并且巩固一下基础
+
+### 技术栈
+
+___
+
   * 前端
     * Vue
       * Vuex
-      * Vue-router
-    * webpack
-    * axios
+      * vue-router
+    * Webpack
+    * Axios
+    * Sass
+    * MavonEditor
+    * ElementUI
   
   * 中间层
-    * Nginx
+    * Nginx(暂未使用反向代理)
     * Node
       * Koa
       * Koa-router
       * Koa-cors
       * Koa-bodyparser
+      * Lodash
+      * TrimHtml
 
-> API规定：
-```
+  * 数据库
+    * MongoDB
+      * Mongoose
 
-  articleId: String,
-  title: String,
-  tags: Array,
-  description: String,
-  create_at: String,
-  content: String,
-  comment: [
-    {
-      name: String,
-      email: String,
-      content: String,
-      dateTime: String,
-      comment_response: [
-        {
-          response_name: String,
-          response_email: String,
-          response_content: String,
-          response_dateTime: String
-        }
-      ]
-    }
-  ]
 
-## 查询
-  - [x] GET /api/article 全部文章
-  - [x] GET /api/article/by/:id 根据_id查询文章
-## 增加
-  - [x] POST /api/article/add 添加文章
-## 删除
-  - [ ] DELETE /api/article/delete/:id 根据_id删除文章
-## 修改
-  - [ ] PATCH /api/article/patch/:id 根据_id修改文章
-```
+### 实现功能
+
+___
+
+- [x] 文章列表
+- [x] 文章内容
+- [x] 文章标签
+- [x] 上传文章
+- [x] 修改文章
+- [x] 删除文章
+- [x] 登录
+- [x] 注册

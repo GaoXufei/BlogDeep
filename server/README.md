@@ -1,11 +1,17 @@
-# API:
+# Server 前端部分
+
+> Blog Server
+
+## API:
 > 以下api均以http://127.0.0.1:7001/api为前缀
 
-> 获取文章列表
-```
-  GET /article
-```
-> 根据id筛选文章
-```
-  GET /article/by/:id 
+## 查询
+- [x] GET /api/article 全部文章
+- [x] GET /api/article/by/:id 根据_id查询文章
+## 增加
+- [x] POST /api/article/add 添加文章
+## 删除
+- [x] DELETE /api/article/delete/:id 根据_id删除文章
+## 修改
+- [x] PATCH /api/article/patch/:id 根据_id修改文章
 ```
