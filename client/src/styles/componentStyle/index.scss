@@ -5,34 +5,60 @@ $fontColor: #66CCFF; // 常规文字颜色
   position: relative;
   width: 100%;
   height: 100%;
+  background: #333;
+  > canvas{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
   .route{
     position: absolute;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
-    width:360px;
-    height: 300px;
+    width:460px;
+    background: rgba(0,0,0,0.3);
+    padding: 80px 0;
     .routeTitle{
       li{
         margin-bottom: 15px;
         list-style: none;
         dl{
           dt{
-            margin-bottom: 10px;
+            margin-bottom: 30px;
+            text-align: center;
             h1{
               font-size: 30px;
               font-weight: 700;
               color: $fontColor;
             }
+            a{
+              display: inline-block;
+              width: 100px;
+              height: 100px;
+              border-radius: 50%;
+              overflow: hidden;
+              img{
+                display: block;
+                width: 100%;
+                height: 100%;
+              }
+            }
           }
           dd{
             font-size: 14px;
             color: #ccc;
+            font-family: '宋体';
           }
         }
         a{
           color: $fontColor;
+          text-decoration: none;
         }
         a:hover{
           color: $fontHoverColor;
