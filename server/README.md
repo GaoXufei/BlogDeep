@@ -3,7 +3,7 @@
 > Blog Server
 
 ## API:
-> 以下api均以http://127.0.0.1:7001/api为前缀
+> 以下api均以api为前缀
 
 ## 查询
 - [x] GET /api/article 全部文章
